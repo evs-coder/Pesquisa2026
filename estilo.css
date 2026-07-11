@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#pagina2{
+    display: none;
+}
+
+
+label {
+    display: block;
+    margin: 10px 0px 5px 0px;
+}
+
+
+.label-radio {
+    display:inline;
+    margin:0px 10px 0px 0px;
+}
+
+select{
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input[type="text"], input[type="tel"]{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#DDD{
+    width:30px;
+}
+
+#telefone{
+    width: 100px;
+}

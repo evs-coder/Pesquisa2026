@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Projeto Pesquisa2026</title>
+        <link rel="stylesheet" href="estilo.css">
+    </head>
+
+    <body>
+        <div id="pagina1">
+            <label for="equipe">Equipe que realizará a pesquisa:</label>
+            <select id="equipe">
+                <option value="" disabled selected>Selecionar Equipe</option>
+                <option value="Bandeiras">Bandeiras</option>
+                <option value="Caronas">Caronas?</option>
+                <option value="Carteiros">Carteiros</option>
+                <option value="Casas">Casas</option>
+                <option value="Gerentes">Gerentes</option>
+                <option value="Juventude">Juventude</option>
+                <option value="Kits e Motoristas">Kits e Motoristas</option>
+                <option value="Militância Digital">Militância Digital</option>
+                <option value="Perfurados">Perfurados</option>
+                <option value="Telemarketing">Telemarketing</option>
+                <option value="Visitas A">Visitas A</option>
+                <option value="Visitas R">Visitas R</option>
+                <option value="Whatsapp">Whatsapp?</option>
+            </select>
+            <span id="erroEquipe"></span>
+
+            <label for="municipio">Municipio que será realizado a pesquisa:</label>
+            <select id="municipio">
+                <option value="" disabled selected>Selecionar Município</option>
+                <option value="Bezerros">Bezerros</option>
+                <option value="Camaragibe">Camaragibe</option>
+                <option value="Caruaru">Caruaru</option>
+                <option value="Gravatá">Gravatá</option>
+                <option value="Olinda">Olinda</option>
+                <option value="Recife">Recife</option>
+                <option value="Outros">Outros</option>        
+            </select>
+            <span id="erroMunicipio"></span>
+            <button id="botaoProximo">Próximo</button>
+        </div>
+
+        <div id="pagina2">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome">
+            <span id="erroNome"></span>
+            <input type="text" id="sobrenome">
+            <span id="erroSobrenome"></span>
+
+            <label for="telDDD">Telefone:</label>
+            <input type="tel" id="telDDD">
+            <span id="erroDDD"></span>
+            <input type="tel" id="telefone">
+            <span id="erroTelefone"></span>
+
+            <label>Já conhecia o trabalho de A?</label>
+            <input type="radio" name="conheciaCandidatoA" id="conheciaASim" value="Sim">
+            <label for="conheciaASim" class="label-radio">Sim</label>
+            <input type="radio" name="conheciaCandidatoA" id="conheciaANao" value="Não">
+            <label for="conheciaANao" class="label-radio">Não</label>
+            <span id="erroConheceA"></span>
+
+            <label>Já conhecia o trabalho de R?</label>
+            <input type="radio" name="conheciaCandidatoR" id="conheciaRSim" value="Sim">
+            <label for="conheciaRSim" class="label-radio">Sim</label>
+            <input type="radio" name="conheciaCandidatoR" id="conheciaRNao" value="Não">
+            <label for="conheciaRNao" class="label-radio">Não</label>
+            <span id="erroConheceR"></span>
+
+            <label>De 0 a 5, qual a chance de apoiar A nessas eleições?</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA0" value="0">
+            <label for="apoioA0" class="label-radio">0</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA1" value="1">
+            <label for="apoioA1" class="label-radio">1</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA2" value="2">
+            <label for="apoioA2" class="label-radio">2</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA3" value="3">
+            <label for="apoioA3" class="label-radio">3</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA4" value="4">
+            <label for="apoioA4" class="label-radio">4</label>
+            <input type="radio" name="apoiarCandidatoA" id="apoioA5" value="5">
+            <label for="apoioA5" class="label-radio">5</label>
+            <span id="erroApoiarA"></span>
+
+            <label>De 0 a 5, qual a chance de apoiar R nessas eleições?</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR0" value="0">
+            <label for="apoioR0" class="label-radio">0</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR1" value="1">
+            <label for="apoioR1" class="label-radio">1</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR2" value="2">
+            <label for="apoioR2" class="label-radio">2</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR3" value="3">
+            <label for="apoioR3" class="label-radio">3</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR4" value="4">
+            <label for="apoioR4" class="label-radio">4</label>
+            <input type="radio" name="apoiarCandidatoR" id="apoioR5" value="5">
+            <label for="apoioR5" class="label-radio">5</label>
+            <span id="erroApoiarR"></span>
+
+            <label>Quantas pessoas você conhece que apoiariam A nessas eleições?</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA0" value="0">
+            <label for="apoioConhecidoA0" class="label-radio">0</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA1" value="1">
+            <label for="apoioConhecidoA1" class="label-radio">1</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA2" value="2">
+            <label for="apoioConhecidoA2" class="label-radio">2</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA3" value="3">
+            <label for="apoioConhecidoA3" class="label-radio">3</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA4" value="4">
+            <label for="apoioConhecidoA4" class="label-radio">4</label>
+            <input type="radio" name="apoioConhecidoA" id="apoioConhecidoA5" value="5">
+            <label for="apoioConhecidoA5" class="label-radio">5 ou mais</label>
+            <span id="erroApoioConhecidoA"></span>
+
+            <label>Quantas pessoas você conhece que apoiariam R nessas eleições?</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR0" value="0">
+            <label for="apoioConhecidoR0" class="label-radio">0</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR1" value="1">
+            <label for="apoioConhecidoR1" class="label-radio">1</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR2" value="2">
+            <label for="apoioConhecidoR2" class="label-radio">2</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR3" value="3">
+            <label for="apoioConhecidoR3" class="label-radio">3</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR4" value="4">
+            <label for="apoioConhecidoR4" class="label-radio">4</label>
+            <input type="radio" name="apoioConhecidoR" id="apoioConhecidoR5" value="5">
+            <label for="apoioConhecidoR5" class="label-radio">5 ou mais</label>
+            <span id="erroApoioConhecidoR"></span>
+
+            <button id="botaoFinalizar">Finalizar Pesquisa</button>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
