@@ -1,18 +1,66 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
+    background: linear-gradient(180deg, rgba(252, 252, 252, 1) 0%, rgba(255, 227, 84, 1) 46%);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-#pagina2{
+#card{
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    background-image: url("img01.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+}
+
+span[id^="erro"] {
+    display: block;
+    margin: 5px;
+    color: #d9534f;
+    font-size: 13px;
+}
+
+p{
+    color:#737373;
+}
+
+#linhaNome, #linhaTelefone{
+    display: flex;
+    gap: 10px;
+}
+
+#pagina2, #displayMunicipio, #displayEquipe{
     display: none;
 }
 
+#displayP{
+    margin-bottom: 25px;
+}
 
 label {
     display: block;
     margin: 10px 0px 5px 0px;
+}
+
+.perguntas{
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 
@@ -36,10 +84,9 @@ input[type="text"], input[type="tel"]{
     font-size: 16px;
 }
 
-#DDD{
-    width:30px;
-}
-
-#telefone{
-    width: 100px;
+#botaoProximo, #botaoFinalizar{
+    margin-top: 20px;
+    padding: 10px;
+    display:block;
+    border-radius: 5px;
 }

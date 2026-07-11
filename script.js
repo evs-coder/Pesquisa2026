@@ -5,7 +5,6 @@ let valorEquipe;
 let valorMunicipio;
 let valorNome;
 let valorSobrenome;
-let valorDDD;
 let valorTelefone;
 let valorConheceA;
 let valorConheceR;
@@ -14,7 +13,7 @@ let valorApoiarR;
 let valorApoioConhecidoA;
 let valorApoioConhecidoR;
 
-let mensagemErro = "Este campo precisa ser preenchido!";
+let mensagemErro = "Campo obrigatório!";
 let formularioValidado;
 
 function validarCampo(idCampo, idErro){
@@ -57,7 +56,35 @@ botao.addEventListener("click", function(){
     if(valorEquipe !== "" && valorMunicipio !== ""){
         document.getElementById("pagina1").style.display="none";
         document.getElementById("pagina2").style.display="block";
+        document.getElementById("displayEquipe").style.display="block";
+        document.getElementById("displayMunicipio").style.display="block";
     }
+
+    document.getElementById("spanDisplayEquipe").textContent = valorEquipe;
+    document.getElementById("spanDisplayMunicipio").textContent = valorMunicipio;
+});
+
+document.getElementById("nome").addEventListener("input", function() {
+    this.value = this.value.toUpperCase();
+})
+
+document.getElementById("sobrenome").addEventListener("input", function() {
+    this.value = this.value.toUpperCase();
+})
+
+document.getElementById("telefone").addEventListener("input", function() {
+    let valor = this.value.replace(/\D/g, ""); // remove tudo que não é dígito
+    valor = valor.substring(0, 11); // limita a 11 dígitos (DDD + 9 do celular)
+    
+    if (valor.length > 6) {
+        valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (valor.length > 2) {
+        valor = valor.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+    } else {
+        valor = valor.replace(/^(\d*)/, "($1");
+    }
+    
+    this.value = valor;
 });
 
 botaoFinalizar.addEventListener("click", function(){
@@ -65,7 +92,6 @@ botaoFinalizar.addEventListener("click", function(){
 
     valorNome = validarCampo("nome", "erroNome");
     valorSobrenome = validarCampo("sobrenome", "erroSobrenome");
-    valorDDD = validarCampo("telDDD", "erroDDD");
     valorTelefone = validarCampo("telefone", "erroTelefone");
     valorConheceA = validarRadio("conheciaCandidatoA", "erroConheceA");
     valorConheceR = validarRadio("conheciaCandidatoR", "erroConheceR");
@@ -76,7 +102,7 @@ botaoFinalizar.addEventListener("click", function(){
 
     const dadosParaEnviar = {
     nome: valorNome + " " + valorSobrenome,
-    telefone: valorDDD + valorTelefone,
+    telefone: valorTelefone,
     conheceA: valorConheceA,
     conheceR: valorConheceR,
     apoiarA: valorApoiarA,
@@ -96,7 +122,6 @@ botaoFinalizar.addEventListener("click", function(){
         if(querRepetir){
             document.getElementById("nome").value = "";
             document.getElementById("sobrenome").value = "";
-            document.getElementById("telDDD").value = "";
             document.getElementById("telefone").value = "";
 
             resetarRadios("conheciaCandidatoA");
