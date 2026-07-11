@@ -1,7 +1,9 @@
+/* Reset básico: garante que padding/border não estourem a largura declarada */
 * {
     box-sizing: border-box;
 }
 
+/* Fundo da página + centralização do cartão */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(180deg, rgba(252, 252, 252, 1) 0%, rgba(255, 227, 84, 1) 46%);
@@ -11,9 +13,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 20px; /* respiro nas bordas em telas pequenas, evita cartão colado na tela */
 }
 
-#card{
+/* Cartão principal */
+#card {
+    width: 100%;
     max-width: 450px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -21,11 +26,12 @@ body {
     border-radius: 12px;
 }
 
+/* Cabeçalho com imagem de fundo */
 #header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    height: 200px;
     background-image: url("img01.jpg");
     background-size: cover;
     background-position: center;
@@ -33,64 +39,87 @@ body {
     border-radius: 12px;
 }
 
-span[id^="erro"] {
-    display: block;
-    margin: 5px;
-    color: #d9534f;
-    font-size: 13px;
+h1 {
+    text-align: center;
 }
 
-p{
-    color:#737373;
+p {
+    color: #737373;
 }
 
-#linhaNome, #linhaTelefone{
-    display: flex;
-    gap: 10px;
-}
-
-#pagina2, #displayMunicipio, #displayEquipe{
-    display: none;
-}
-
-#displayP{
+#displayP {
     margin-bottom: 25px;
 }
 
+/* Esconde a Página 2 até o clique em "Próximo" */
+#pagina2 {
+    display: none;
+}
+
+/* Labels padrão */
 label {
     display: block;
     margin: 10px 0px 5px 0px;
 }
 
-.perguntas{
-    margin-top: 15px;
+/* Espaçamento maior no início de cada novo grupo de pergunta */
+.perguntas {
+    margin-top: 24px;
     margin-bottom: 5px;
 }
 
-
 .label-radio {
-    display:inline;
-    margin:0px 10px 0px 0px;
+    display: inline;
+    margin: 0px 10px 0px 0px;
 }
 
-select{
-    width: 250px;
+/* Campos de seleção e texto */
+select {
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
 }
 
-input[type="text"], input[type="tel"]{
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
 }
 
-#botaoProximo, #botaoFinalizar{
+/* Linhas com campos lado a lado (Nome/Sobrenome, DDD/Telefone) */
+#linhaNome,
+#linhaTelefone {
+    display: flex;
+    gap: 10px;
+}
+
+#linhaNome > div,
+#linhaTelefone > div {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Mensagens de erro */
+span[id^="erro"] {
+    display: block;
+    margin: 5px 0;
+    color: #d9534f;
+    font-size: 13px;
+}
+
+/* Botões */
+#botaoProximo,
+#botaoFinalizar {
     margin-top: 20px;
-    padding: 10px;
-    display:block;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
