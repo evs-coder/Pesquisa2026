@@ -60,6 +60,19 @@ p{
     margin-bottom: 25px;
 }
 
+#tituloEntrevistado {
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 1px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    border-bottom: 1px solid #929292;
+}
+
 label {
     display: block;
     margin: 10px 0px 5px 0px;
@@ -110,6 +123,28 @@ input[type="tel"]{
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.label-radio {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 6px 0 0;
+}
+
+input[type="radio"]:checked + .label-radio {
+    background-color: #333;
+    color: white;
+    border-color: #333;
 }
 
 #botaoProximo, 
