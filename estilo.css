@@ -149,13 +149,20 @@ input[type="radio"]:checked + .label-radio {
     border-color: #333;
 }
 
-#botaoProximo, 
+#botaoProximo,
 #botaoFinalizar {
     margin-top: 20px;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f5d76e;
+    color: #333;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+}
+
+#botaoProximo:hover,
+#botaoFinalizar:hover {
+    background-color: #f5d76e;
 }
