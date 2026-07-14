@@ -48,6 +48,63 @@ function resetarRadios(atributoName){
     }
 }
 
+async function enviarPesquisa(dados){
+    try{
+        const resposta = await fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
+            method: "POST",
+            body: JSON.stringify(dados),
+        });
+
+        if(!resposta.ok){
+            throw new Error("Servidor respondeu com erro");
+        }
+
+        return true;
+    } catch (erro) {
+        adicionarNaFila(dados);
+        return false;
+    }
+}
+
+function adicionarNaFila(dados){
+    const fila = JSON.parse(localStorage.getItem("filaPendente")) || [];
+    fila.push(dados);
+    localStorage.setItem("filaPendente", JSON.stringify(fila));
+}
+
+async function tentarReenviarFila(){
+    const fila = JSON.parse(localStorage.getItem("filaPendente")) || [];
+
+    if (fila.length === 0){
+        return;
+    }
+
+    const filaRestante = [];
+
+    for (let i = 0; i < fila.length; i++){
+        try{
+            const resposta = await fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
+                method: "POST",
+                body: JSON.stringify(fila[i])
+            });
+
+            if(!resposta.ok){
+            throw new Error("Servidor respondeu com erro");
+            }
+        } catch (erro) {
+            filaRestante.push(fila[i]);
+        }
+    }
+
+    localStorage.setItem("filaPendente", JSON.stringify(filaRestante));
+}
+
+tentarReenviarFila();
+
+window.addEventListener("online", function() {
+    tentarReenviarFila();
+});
+
 botao.addEventListener("click", function(){
 
     valorEquipe = validarCampo("equipe", "erroEquipe");
@@ -87,7 +144,7 @@ document.getElementById("telefone").addEventListener("input", function() {
     this.value = valor;
 });
 
-botaoFinalizar.addEventListener("click", function(){
+botaoFinalizar.addEventListener("click", async function(){
     formularioValidado = true;
 
     valorNome = validarCampo("nome", "erroNome");
@@ -100,25 +157,32 @@ botaoFinalizar.addEventListener("click", function(){
     valorApoioConhecidoA = validarRadio("apoioConhecidoA", "erroApoioConhecidoA");
     valorApoioConhecidoR = validarRadio("apoioConhecidoR", "erroApoioConhecidoR");
 
-    const dadosParaEnviar = {
-    nome: valorNome + " " + valorSobrenome,
-    telefone: valorTelefone,
-    conheceA: valorConheceA,
-    conheceR: valorConheceR,
-    apoiarA: valorApoiarA,
-    apoiarR: valorApoiarR,
-    apoioConhecidoA: valorApoioConhecidoA,
-    apoioConhecidoR: valorApoioConhecidoR,
-    municipio: valorMunicipio,
-    equipe: valorEquipe
-    };
-
     if(formularioValidado){
-        fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
-        method: "POST",
-        body: JSON.stringify(dadosParaEnviar)
-        });
-        const querRepetir = confirm(`Pesquisa realizada com sucesso! Prosseguir para uma nova pesquisa em ${valorMunicipio}?`);
+
+        const dadosParaEnviar = {
+            nome: valorNome + " " + valorSobrenome,
+            telefone: valorTelefone,
+            conheceA: valorConheceA,
+            conheceR: valorConheceR,
+            apoiarA: valorApoiarA,
+            apoiarR: valorApoiarR,
+            apoioConhecidoA: valorApoioConhecidoA,
+            apoioConhecidoR: valorApoioConhecidoR,
+            municipio: valorMunicipio,
+            equipe: valorEquipe
+        };
+        
+        const enviouComSucesso = await enviarPesquisa(dadosParaEnviar);
+
+        let mensagemConfirm;
+        if (enviouComSucesso){
+            mensagemConfirm = `Pesquisa realizada com sucesso! Deseja realizar uma nova pesquisa em ${valorMunicipio}?`;
+        } else{
+            mensagemConfirm = `Sem conexão no momento. A pesquisa foi salva e será enviada automaticamente depois. Prosseguir para uma nova pesquisa em ${valorMunicipio}?`;
+        }
+
+        const querRepetir = confirm(mensagemConfirm);
+        
         if(querRepetir){
             document.getElementById("nome").value = "";
             document.getElementById("sobrenome").value = "";
@@ -140,15 +204,3 @@ botaoFinalizar.addEventListener("click", function(){
     }
 
 })
-
-    function esperar(millisegundos) {
-        return new Promise(function(resolve) {
-            setTimeout(resolve, millisegundos);
-        });
-    }
-
-    async function testeAsync() {
-        alert("Começando...");
-        await esperar(2000);
-        alert("Passaram 2 segundos!");
-    }
