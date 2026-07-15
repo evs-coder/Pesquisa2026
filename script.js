@@ -159,40 +159,25 @@ botaoFinalizar.addEventListener("click", async function(){
 
     if(formularioValidado){
 
-        const dadosParaEnviar = {
-            nome: valorNome + " " + valorSobrenome,
-            telefone: valorTelefone,
-            conheceA: valorConheceA,
-            conheceR: valorConheceR,
-            apoiarA: valorApoiarA,
-            apoiarR: valorApoiarR,
-            apoioConhecidoA: valorApoioConhecidoA,
-            apoioConhecidoR: valorApoioConhecidoR,
-            municipio: valorMunicipio,
-            equipe: valorEquipe
-        };
-        
-        const textoOriginalBotao = botaoFinalizar.textContent;
-        botaoFinalizar.disabled = true;
-        botaoFinalizar.textContent = "Enviando...";
+    const dadosParaEnviar = {
+    nome: valorNome + " " + valorSobrenome,
+    telefone: valorTelefone,
+    conheceA: valorConheceA,
+    conheceR: valorConheceR,
+    apoiarA: valorApoiarA,
+    apoiarR: valorApoiarR,
+    apoioConhecidoA: valorApoioConhecidoA,
+    apoioConhecidoR: valorApoioConhecidoR,
+    municipio: valorMunicipio,
+    equipe: valorEquipe
+    };
 
-        let enviouComSucesso;
-        try {
-            enviouComSucesso = await enviarPesquisa(dadosParaEnviar);
-        } finally {
-            botaoFinalizar.disabled = false;
-            botaoFinalizar.textContent = textoOriginalBotao;
-        }
-
-        let mensagemConfirm;
-        if (enviouComSucesso){
-            mensagemConfirm = `Pesquisa realizada com sucesso! Deseja realizar uma nova pesquisa em ${valorMunicipio}?`;
-        } else{
-            mensagemConfirm = `Sem conexão no momento. A pesquisa foi salva e será enviada automaticamente depois. Prosseguir para uma nova pesquisa em ${valorMunicipio}?`;
-        }
-
-        const querRepetir = confirm(mensagemConfirm);
-        
+    if(formularioValidado){
+        fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
+        method: "POST",
+        body: JSON.stringify(dadosParaEnviar)
+        });
+        const querRepetir = confirm(`Pesquisa realizada com sucesso! Prosseguir para uma nova pesquisa em ${valorMunicipio}?`);
         if(querRepetir){
             document.getElementById("nome").value = "";
             document.getElementById("sobrenome").value = "";
@@ -214,3 +199,15 @@ botaoFinalizar.addEventListener("click", async function(){
     }
 
 })
+
+    function esperar(millisegundos) {
+        return new Promise(function(resolve) {
+            setTimeout(resolve, millisegundos);
+        });
+    }
+
+    async function testeAsync() {
+        alert("Começando...");
+        await esperar(2000);
+        alert("Passaram 2 segundos!");
+    }
