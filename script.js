@@ -48,20 +48,33 @@ function resetarRadios(atributoName){
     }
 }
 
-async function enviarPesquisa(dados){
-    try{
-        const resposta = await fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
+function esperar(milissegundos) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, milissegundos);
+    });
+}
+
+async function enviarComBackoff(dados, tentativa) {
+    tentativa = tentativa || 1;
+    const maximoTentativas = 3;
+
+    try {
+        const resposta = await fetch("URL_DO_APPS_SCRIPT", {
             method: "POST",
             body: JSON.stringify(dados),
         });
 
-        if(!resposta.ok){
+        if (!resposta.ok) {
             throw new Error("Servidor respondeu com erro");
         }
 
         return true;
     } catch (erro) {
-        adicionarNaFila(dados);
+        if (tentativa < maximoTentativas) {
+            const tempoEspera = Math.pow(2, tentativa) * 1000;
+            await esperar(tempoEspera);
+            return enviarComBackoff(dados, tentativa + 1);
+        }
         return false;
     }
 }
