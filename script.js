@@ -54,7 +54,7 @@ function esperar(milissegundos) {
     });
 }
 
-async function enviarComBackoff(dados, tentativa) {
+async function enviarPesquisa(dados, tentativa) {
     tentativa = tentativa || 1;
     const maximoTentativas = 3;
 
