@@ -54,12 +54,12 @@ function esperar(milissegundos) {
     });
 }
 
-async function enviarPesquisa(dados, tentativa) {
+async function enviarComBackoff(dados, tentativa) {
     tentativa = tentativa || 1;
     const maximoTentativas = 3;
 
     try {
-        const resposta = await fetch("URL_DO_APPS_SCRIPT", {
+        const resposta = await fetch("https://script.google.com/macros/s/AKfycbyT0jag8PBnQENRYKo-dRj4FNXsTTX9eWSSDh9ogJxJ1kXYer3sq5NvgJhaqi0bgoN1/exec", {
             method: "POST",
             body: JSON.stringify(dados),
         });
@@ -71,12 +71,16 @@ async function enviarPesquisa(dados, tentativa) {
         return true;
     } catch (erro) {
         if (tentativa < maximoTentativas) {
-            const tempoEspera = Math.pow(2, tentativa) * 1000;
+            const tempoBase = Math.pow(2, tentativa) * 1000;
+            const variacaoAleatoria = Math.random() * 1000;
+            const tempoEspera = tempoBase + variacaoAleatoria;
+
             await esperar(tempoEspera);
             return enviarComBackoff(dados, tentativa + 1);
         }
-        return false;
-    }
+    adicionarNaFila(dados);
+    return false;
+}
 }
 
 function adicionarNaFila(dados){
@@ -191,7 +195,7 @@ botaoFinalizar.addEventListener("click", async function(){
 
         let enviouComSucesso;
         try {
-            enviouComSucesso = await enviarPesquisa(dadosParaEnviar);
+            enviouComSucesso = await enviarComBackoff(dadosParaEnviar);
         } finally {
             botaoFinalizar.disabled = false;
             botaoFinalizar.textContent = textoOriginalBotao;
