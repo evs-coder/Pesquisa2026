@@ -125,17 +125,14 @@ window.addEventListener("online", function() {
 botao.addEventListener("click", function(){
 
     valorEquipe = validarCampo("equipe", "erroEquipe");
-    valorMunicipio = validarCampo("municipio", "erroMunicipio");
 
-    if(valorEquipe !== "" && valorMunicipio !== ""){
+    if(valorEquipe !== ""){
         document.getElementById("pagina1").style.display="none";
         document.getElementById("pagina2").style.display="block";
         document.getElementById("displayEquipe").style.display="block";
-        document.getElementById("displayMunicipio").style.display="block";
     }
 
     document.getElementById("spanDisplayEquipe").textContent = valorEquipe;
-    document.getElementById("spanDisplayMunicipio").textContent = valorMunicipio;
 });
 
 document.getElementById("nome").addEventListener("input", function() {
@@ -167,6 +164,7 @@ botaoFinalizar.addEventListener("click", async function(){
     valorNome = validarCampo("nome", "erroNome");
     valorSobrenome = validarCampo("sobrenome", "erroSobrenome");
     valorTelefone = validarCampo("telefone", "erroTelefone");
+    valorMunicipio = validarCampo("municipio", "erroMunicipio");
     valorConheceA = validarRadio("conheciaCandidatoA", "erroConheceA");
     valorConheceR = validarRadio("conheciaCandidatoR", "erroConheceR");
     valorApoiarA = validarRadio("apoiarCandidatoA", "erroApoiarA");
@@ -203,9 +201,9 @@ botaoFinalizar.addEventListener("click", async function(){
 
         let mensagemConfirm;
         if (enviouComSucesso){
-            mensagemConfirm = `Pesquisa realizada com sucesso! Deseja realizar uma nova pesquisa em ${valorMunicipio}?`;
+            mensagemConfirm = "Pesquisa realizada com sucesso! Deseja realizar uma nova pesquisa?";
         } else{
-            mensagemConfirm = `Sem conexão no momento. A pesquisa foi salva e será enviada automaticamente depois. Prosseguir para uma nova pesquisa em ${valorMunicipio}?`;
+            mensagemConfirm = "Sem conexão no momento. A pesquisa foi salva e será enviada automaticamente depois. Prosseguir para uma nova pesquisa?";
         }
 
         const querRepetir = confirm(mensagemConfirm);
@@ -214,6 +212,7 @@ botaoFinalizar.addEventListener("click", async function(){
             document.getElementById("nome").value = "";
             document.getElementById("sobrenome").value = "";
             document.getElementById("telefone").value = "";
+            document.getElementById("municipio").value = "";
 
             resetarRadios("conheciaCandidatoA");
             resetarRadios("conheciaCandidatoR");

@@ -33,24 +33,6 @@
                 </select>
                 <span id="erroEquipe"></span>
 
-                <label for="municipio" class="perguntas">Municipio que será realizado a pesquisa:</label>
-                <select id="municipio">
-                    <option value="" disabled selected>Selecionar Municipio</option>
-                    <option value="Bezerros">Bezerros</option>
-                    <option value="Cabo Sto Agostinho">Cabo de Santo Agostinho</option>
-                    <option value="Carpina">Carpina</option>
-                    <option value="Caruaru">Caruaru</option>
-                    <option value="Garanhuns">Garanhuns</option>
-                    <option value="Goiana">Goiana</option>
-                    <option value="Gravatá">Gravatá</option>
-                    <option value="Ipojuca">Ipojuca</option>
-                    <option value="Petrolina">Petrolina</option>
-                    <option value="Recife">Recife</option>
-                    <option value="Sta Cruz do Capibaribe">Santa Cruz do Capibaribe</option>
-                    <option value="Vitória de Santo Antão">Vitória de Santo Antão</option>
-                    <option value="Outros">Outro</option>        
-                </select>
-                <span id="erroMunicipio"></span>
                 <button id="botaoProximo">Próximo</button>
             </div>
 
@@ -58,7 +40,6 @@
 
                 <div id="displayP">
                     <p id="displayEquipe">Equipe: <span id="spanDisplayEquipe"></span></p>
-                    <p id="displayMunicipio">Municipio: <span id="spanDisplayMunicipio"></span></p>
                 </div>
 
                 <p id="tituloEntrevistado"></p>
@@ -75,18 +56,42 @@
                     </div>
                 </div>
                 
-                <label for="telDDD">Telefone do Entrevistado:</label>
-                <input type="tel" id="telefone" placeholder="(81) 99999-9999">
-                <span id="erroTelefone"></span>
+                <div id="linhaTelefoneMunicipio">
+                    <div class="campo-com-erro">
+                        <label for="telefone">Telefone do Entrevistado:</label>
+                        <input type="tel" id="telefone" placeholder="(81) 99999-9999">
+                        <span id="erroTelefone"></span>
+                    </div>
+                    <div class="campo-com-erro">
+                        <label for="municipio">Municipio do Entrevistado:</label>
+                        <select id="municipio">
+                            <option value="" disabled selected>Selecionar Municipio</option>
+                            <option value="Bezerros">Bezerros</option>
+                            <option value="Cabo Sto Agostinho">Cabo de Santo Agostinho</option>
+                            <option value="Carpina">Carpina</option>
+                            <option value="Caruaru">Caruaru</option>
+                            <option value="Garanhuns">Garanhuns</option>
+                            <option value="Goiana">Goiana</option>
+                            <option value="Gravatá">Gravatá</option>
+                            <option value="Ipojuca">Ipojuca</option>
+                            <option value="Petrolina">Petrolina</option>
+                            <option value="Recife">Recife</option>
+                            <option value="Sta Cruz do Capibaribe">Santa Cruz do Capibaribe</option>
+                            <option value="Vitória de Santo Antão">Vitória de Santo Antão</option>
+                            <option value="Outros">Outro</option>
+                        </select>
+                        <span id="erroMunicipio"></span>
+                    </div>
+                </div>
                 
-                <label class="perguntas">Já conhecia o trabalho de A?</label>
+                <label class="perguntas">Já conhecia o trabalho de Andreza?</label>
                 <input type="radio" name="conheciaCandidatoA" id="conheciaASim" value="Sim">
                 <label for="conheciaASim" class="label-radio">Sim</label>
                 <input type="radio" name="conheciaCandidatoA" id="conheciaANao" value="Não">
                 <label for="conheciaANao" class="label-radio">Não</label>
                 <span id="erroConheceA"></span>
 
-                <label class="perguntas">Já conhecia o trabalho de R?</label>
+                <label class="perguntas">Já conhecia o trabalho de Romero?</label>
                 <input type="radio" name="conheciaCandidatoR" id="conheciaRSim" value="Sim">
                 <label for="conheciaRSim" class="label-radio">Sim</label>
                 <input type="radio" name="conheciaCandidatoR" id="conheciaRNao" value="Não">

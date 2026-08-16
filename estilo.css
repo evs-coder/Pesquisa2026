@@ -50,12 +50,6 @@ p{
     color:#737373;
 }
 
-#linhaNome, 
-#linhaTelefone{
-    display: flex;
-    gap: 10px;
-}
-
 #pagina2, 
 #displayMunicipio, 
 #displayEquipe{
@@ -100,15 +94,16 @@ select{
 }
 
 #linhaNome,
-#linhaTelefone {
+#linhaTelefoneMunicipio {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 #linhaNome > div,
-#linhaTelefone > div {
-    flex: 1;
-    min-width: 0;
+#linhaTelefoneMunicipio > div {
+    flex: 1 1 140px;
+    min-width: 140px;
 }
 
 input[type="text"]{
@@ -120,7 +115,7 @@ input[type="text"]{
 }
  
 input[type="tel"]{
-    width: 200px;
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
