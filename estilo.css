@@ -85,12 +85,14 @@ label {
     margin:0px 10px 0px 0px;
 }
 
-select{
+select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
+    background-color: white;
+    color: #333;
 }
 
 #linhaNome,
